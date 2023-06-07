@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Options;
 using Pioneer.Console.Boilerplate.Models;
 using Pioneer.Console.Boilerplate.Services;
 
@@ -25,10 +27,14 @@ namespace Pioneer.Console.Boilerplate
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
             // add logging
-            serviceCollection.AddSingleton(new LoggerFactory()
-                .AddConsole()
-                .AddDebug());
-            serviceCollection.AddLogging(); 
+            serviceCollection.AddLogging(builder => {
+                builder.AddSimpleConsole(options => {
+                    options.SingleLine = true;
+                    options.ColorBehavior = LoggerColorBehavior.Enabled;
+                    options.TimestampFormat = "HH:mm:ss ";
+                });
+                builder.AddDebug();
+            });
 
             // build configuration
             var configuration = new ConfigurationBuilder()
