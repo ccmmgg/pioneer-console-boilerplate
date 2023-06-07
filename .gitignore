@@ -231,6 +231,8 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+.idea
+
 # LightSwitch generated files
 GeneratedArtifacts/
 ModelManifest.xml
@@ -244,3 +246,5 @@ ModelManifest.xml
 /src/package-lock.json
 /src/Pioneer.Console.Boilerplate.Template/nuget.exe
 /src/nuget.exe
+
+
